@@ -132,6 +132,8 @@
   </div>
 
   <script>
+
+    
     let front = true;
     function flip() {
       front = !front;
@@ -139,8 +141,16 @@
       document.getElementById('qr-code-pv').style.display = front ? 'none' : 'block';
     }
 
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    if (!id) {
+      document.getElementById("memberCard").innerText = "No ID provided!";
+      return;
+    }
+
     // Fetch member data from Google Apps Script
-    const apiUrl = "https://script.google.com/macros/s/AKfycbx8r4UzQmYHVEno-Xez3XfKII0EfI4YGSrm4BdP6OqMvMIEMHUfhs0brADxGG_8XjH7/exec?id=220707001-0003";
+    const apiUrl = `https://script.google.com/macros/s/AKfycbx8r4UzQmYHVEno-Xez3XfKII0EfI4YGSrm4BdP6OqMvMIEMHUfhs0brADxGG_8XjH7/exec?id=${id}`;
 
     fetch(apiUrl)
       .then(res => res.json())
