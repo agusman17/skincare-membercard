@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kartu Member - Beauty Care</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'pink-soft': '#f8e8f0',
+            'pink-accent': '#f0c2d4',
+            'brown-text': '#8b4513',
+            'blue-button': '#6bb6ff'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-full bg-gradient-to-br from-pink-100 to-pink-200">
+  <div class="min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-6xl bg-pink-soft rounded-3xl shadow-2xl overflow-hidden">
+      <div class="flex flex-col lg:flex-row min-h-[600px]">
+
+        <!-- Left Side -->
+        <div class="lg:w-1/2 relative flex flex-col justify-between p-4 pb-0 lg:p-8 lg:pb-0 bg-gradient-to-br from-pink-200 to-pink-300">
+          <div class="text-left mb-6 z-10 mt-20 ml-5">
+            <h1 class="text-xl lg:text-3xl font-bold text-brown-text leading-tight">
+              Tingkatkan Pembelian Anda<br>
+              Kumpulkan Point nya
+            </h1>
+          </div>
+          <div class="relative mt-auto">
+            <div class="w-full max-w-lg mx-auto">
+              <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-rY29r38ppeJZuARBfeT9rCv445OT2S.png" alt="Beauty skincare model" class="w-full h-auto object-cover rounded-2xl">
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side -->
+        <div class="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center space-y-8">
+          <!-- Membership Card -->
+          <div class="space-y-4">
+            <h2 class="text-lg lg:text-xl font-semibold text-gray-600 uppercase tracking-wide">
+              Kartu Member
+            </h2>
+
+            <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100" id="card-action" onclick="flip()">
+              <div id="member-info">
+                <div class="flex items-start space-x-4">
+                  <div class="w-16 h-16 bg-gray-800 rounded-lg flex items-center justify-center flex-shrink-0 mr-4">
+                    <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2L8 6v6l4 4 4-4V6l-4-4z"/>
+                      <path d="M8 6h8v2H8zM8 10h8v2H8z"/>
+                    </svg>
+                  </div>
+                  <div class="flex-1 space-y-2">
+                    <h3 class="font-bold text-gray-800">Kartu Member</h3>
+                    <p class="text-sm text-gray-600">Kartu Member Pembelian Skin Care</p>
+
+                    <div class="space-y-1 text-sm">
+                      <div class="flex">
+                        <span class="w-3/12 text-gray-500">ID</span>
+                        <span class="w-9/12 text-gray-800" id="member-id">: -</span>
+                      </div>
+                      <div class="flex">
+                        <span class="w-3/12 text-gray-500">Nama</span>
+                        <span class="w-9/12 text-gray-800" id="member-nama">: -</span>
+                      </div>
+                      <div class="flex">
+                        <span class="w-3/12 text-gray-500">Produk</span>
+                        <span class="w-9/12 text-gray-800" id="member-produk">: -</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="qr-code-pv" class="justify-center" style="display:none;">
+                <div class="flex justify-center">
+                  <img id="member-barcode" class="img-barcode" src="" />
+                </div>
+                <div class="flex justify-center">
+                  <p id="member-id-qr">-</p>
+                </div>
+              </div>
+            </div>
+
+            <button id="print-btn" style="display:none;"
+              class="bg-blue-button hover:bg-blue-500 text-white font-semibold py-1.5 px-5 rounded-sm shadow-md transition-colors duration-200 w-full sm:w-auto">
+              Print
+            </button>
+          </div>
+
+          <!-- Points Section -->
+          <div class="space-y-4">
+            <h2 class="text-lg lg:text-xl font-semibold text-gray-600 uppercase tracking-wide">
+              Point Terkumpul
+            </h2>
+            <p class="text-gray-700 leading-relaxed" id="points-desc">
+              Loading data...
+            </p>
+
+            <div class="relative">
+              <div class="bg-white border-2 border-dashed border-blue-300 rounded-lg p-6 shadow-lg relative overflow-hidden">
+                <div class="absolute -left-3 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-pink-soft rounded-full border-2 border-blue-300"></div>
+                <div class="absolute -right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-pink-soft rounded-full border-2 border-blue-300"></div>
+                <div class="text-center">
+                  <div class="text-xs uppercase tracking-widest text-blue-600 font-semibold mb-2">
+                    ★ LOYALTY POINTS ★
+                  </div>
+                  <div class="text-4xl lg:text-5xl font-bold text-blue-600 mb-2" id="member-point">
+                    0
+                  </div>
+                  <div class="text-sm text-gray-600 uppercase tracking-wide font-medium">
+                    Points Available
+                  </div>
+                </div>
+                <div class="absolute top-0 left-0 w-4 h-4 bg-pink-soft transform rotate-45 -translate-x-2 -translate-y-2"></div>
+                <div class="absolute top-0 right-0 w-4 h-4 bg-pink-soft transform rotate-45 translate-x-2 -translate-y-2"></div>
+                <div class="absolute bottom-0 left-0 w-4 h-4 bg-pink-soft transform rotate-45 -translate-x-2 translate-y-2"></div>
+                <div class="absolute bottom-0 right-0 w-4 h-4 bg-pink-soft transform rotate-45 translate-x-2 translate-y-2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let front = true;
+    function flip() {
+      front = !front;
+      document.getElementById('member-info').style.display = front ? 'block' : 'none';
+      document.getElementById('qr-code-pv').style.display = front ? 'none' : 'block';
+    }
+
+    // Fetch member data from Google Apps Script
+    const apiUrl = "https://script.google.com/macros/s/AKfycbx8r4UzQmYHVEno-Xez3XfKII0EfI4YGSrm4BdP6OqMvMIEMHUfhs0brADxGG_8XjH7/exec?id=220707001-0003";
+
+    fetch(apiUrl)
+      .then(res => res.json())
+      .then(member => {
+        document.getElementById('member-id').textContent = `: ${member.id}`;
+        document.getElementById('member-nama').textContent = `: ${member.nama}`;
+        document.getElementById('member-produk').textContent = `: ${member.produkList}`;
+        document.getElementById('member-id-qr').textContent = member.id;
+        document.getElementById('member-barcode').src = member.barcodeUrl || '';
+        document.getElementById('member-point').textContent = member.point;
+        document.getElementById('points-desc').textContent = `Point Member dengan ID Member : ${member.id}, Atas Nama ${member.nama} adalah :`;
+
+        if (member.isPrint === "Ya") {
+          document.getElementById("print-btn").style.display = "inline-block";
+        }
+      })
+      .catch(err => {
+        console.error("Error fetching data:", err);
+        document.getElementById('points-desc').textContent = "Gagal memuat data member.";
+      });
+  </script>
+</body>
+</html>
