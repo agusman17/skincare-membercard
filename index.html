@@ -89,10 +89,10 @@
               </div>
             </div>
 
-            <button id="print-btn" style="display:none;"
+            <a id="print-btn" target="_blank" style="display:none;"
               class="bg-blue-button hover:bg-blue-500 text-white font-medium py-0.5 px-5 rounded shadow-md transition-colors duration-200 w-full sm:w-auto">
               Print
-            </button>
+            </a>
           </div>
 
           <!-- Points Section -->
@@ -150,10 +150,12 @@
 
     // Fetch member data from Google Apps Script
     const apiUrl = `https://script.google.com/macros/s/AKfycbx8r4UzQmYHVEno-Xez3XfKII0EfI4YGSrm4BdP6OqMvMIEMHUfhs0brADxGG_8XjH7/exec?id=${id}`;
-
+    const printUrl = `https://agusman17.github.io/skincare-membercard/print.html?id=${id}`;
+    
     fetch(apiUrl)
       .then(res => res.json())
       .then(member => {
+        document.getElementById('print-btn').href = printUrl;
         document.getElementById('member-id').textContent = `: ${member.id}`;
         document.getElementById('member-nama').textContent = `: ${member.nama}`;
         document.getElementById('member-produk').textContent = `: ${member.produkList}`;
