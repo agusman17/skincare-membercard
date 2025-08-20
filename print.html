@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+
+      @media print {
+        .no-print {
+          display: none;
+        }
+      }
+
+      .card {
+        background: #fff;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        width: 85.6mm !important;
+        height: 53.98mm !important;
+        margin: 50px auto;
+        padding-top:2px;
+        border-radius: 10px;
+      }
+
+      body{
+        font-family: Arial, sans-serif;
+        background: #fff;
+        font-size: 7px;
+      }
+
+      td{
+        padding: 0.25px 2.5px;
+        vertical-align:top;
+        line-height: 15px;
+      }
+
+      .img-logo{
+        width:85px;
+        height:85px;
+        margin-top: -12px;
+        margin-left: 10%;
+      }
+
+      .table-info{
+        margin-top:1px;
+        padding: 5px;
+      }
+      .title-card{
+        text-align:center; 
+        width:100%;
+        margin-top:25px;
+      }
+
+      .left-content{
+        style:"width:25%;"
+      }
+      .right-content{
+        width:75%;
+        margin-left: 15px;
+      }
+
+      .member-info{
+        margin-top:15px;
+      }
+
+      .button-action-pv{
+        width: 100% !important;
+        text-align: center;
+        margin-bottom:15px;
+      }
+
+      .detail-reward{
+        border-top: 1px dashed #efefef;
+        min-height:400px;
+        text-align: center;
+        font-size: 15px;;
+        margin-top:40px;
+      }
+
+      .point-view{
+        background-color: #48ff34;
+        padding: 0px 2px;
+        width: 150px;
+        text-align: center;
+        margin: 25px auto;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      }
+
+    </style>
+  </head>
+  <body>
+
+
+    <div class="card" id="card-action">
+
+        <h2 class="title-card">Kartu Member</h2>
+        <p style="text-align:center;margin-top:-5px;">Kartu Member Pembelian Skin Care</p>
+
+        <div class="member-info">
+        <div style="display: inline-flex;">
+
+            <div class="left-content">
+            <img class="img-logo" src="https://static.vecteezy.com/system/resources/thumbnails/038/516/357/small/ai-generated-eagle-logo-design-in-black-style-on-transparant-background-png.png">
+            </div>
+
+            <div class="right-content">
+
+            <table class="table-info">
+                <tr>
+                <td><strong>ID</strong></td>
+                <td>:</td>
+                <td id="member-id"></td>
+                </tr>
+                <tr>
+                <td><strong>Nama</strong></td>
+                <td>:</td>
+                <td id="member-nama"></td>
+                </tr>
+                <!-- <tr>
+                <td><strong>Kategori</strong></td>
+                <td>:</td>
+                <td><?= member.kategori ?></td>
+                </tr>
+                <tr>
+                <td><strong>Area</strong></td>
+                <td>:</td>
+                <td><?= member.area ?></td>
+                </tr>
+                <tr>
+                <td><strong>Alamat</strong></td>
+                <td>:</td>
+                <td><?= member.alamat ?></td>
+                </tr> -->
+                <!-- <tr>
+                <td><strong>Point</strong></td>
+                <td>:</td>
+                <td><?= member.point ?></td>
+                </tr> -->
+                <tr>
+                <td><strong>Produk</strong></td>
+                <td>:</td>
+                <td id="member-produk"></td>
+                </tr>
+
+            </table>
+
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="member-info">
+            <div id="qr-code-pv" style="text-align:center">
+            <img id="member-barcode" src="" style="margin-top: 25px;"/>
+            <p id="member-id-qr"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+            const id = params.get("id");
+
+            if (!id) {
+            alert("Id Required");
+            }
+
+            const apiUrl = `https://script.google.com/macros/s/AKfycbx8r4UzQmYHVEno-Xez3XfKII0EfI4YGSrm4BdP6OqMvMIEMHUfhs0brADxGG_8XjH7/exec?id=${id}`;
+
+            // Fetch member data from Google Apps Script
+            fetch(apiUrl)
+                .then(res => res.json())
+                .then(member => {
+                document.getElementById('member-id').textContent = `: ${member.id}`;
+                document.getElementById('member-nama').textContent = `: ${member.nama}`;
+                document.getElementById('member-produk').textContent = `: ${member.produkList}`;
+                document.getElementById('member-id-qr').textContent = member.id;
+
+                const img = document.getElementById('member-barcode');
+                img.src = member.barcodeUrl || '';
+
+                // Wait for image load before printing
+                img.onload = () => {
+                    window.print();
+                };
+
+                // If image fails, still show print dialog
+                img.onerror = () => {
+                    console.warn("QR Code failed to load");
+                    window.print();
+                };
+                })
+                .catch(err => {
+                console.error("Error fetching data:", err);
+                alert("Gagal memuat data member.");
+            });
+    </script>
+
+  </body>
+</html>
