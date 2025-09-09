@@ -125,6 +125,14 @@
                     
                     </div>
                 </div>
+                <div id="qr-code-pv" class="justify-center" style="display:none;">
+                  <div class="flex justify-center">
+                    <img id="member-barcode" class="img-barcode" src="" />
+                  </div>
+                  <div class="flex justify-center mt-2">
+                    <p id="member-id-qr">-</p>
+                  </div>
+                </div>
             </div>
 
             <button id="print-btn" style="display:none;"
@@ -197,7 +205,7 @@
         document.getElementById('member-id').textContent = `${member.id}`;
         // document.getElementById('member-nama').textContent = `${member.nama}`;
         // document.getElementById('member-produk').textContent = `${member.produkList}`;
-        // document.getElementById('member-id-qr').textContent = member.id;
+        document.getElementById('member-id-qr').textContent = member.id;
         document.getElementById('member-barcode').src = member.barcodeUrl || '';
         document.getElementById('member-point').textContent = member.point;
         // document.getElementById('points-desc').textContent = `Point Member dengan ID Member : ${member.id}, Atas Nama ${member.nama} adalah :`;
