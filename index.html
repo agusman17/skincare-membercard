@@ -195,12 +195,12 @@
       .then(member => {
 
         document.getElementById('member-id').textContent = `${member.id}`;
-        document.getElementById('member-nama').textContent = `${member.nama}`;
-        document.getElementById('member-produk').textContent = `${member.produkList}`;
-        document.getElementById('member-id-qr').textContent = member.id;
+        // document.getElementById('member-nama').textContent = `${member.nama}`;
+        // document.getElementById('member-produk').textContent = `${member.produkList}`;
+        // document.getElementById('member-id-qr').textContent = member.id;
         document.getElementById('member-barcode').src = member.barcodeUrl || '';
         document.getElementById('member-point').textContent = member.point;
-        document.getElementById('points-desc').textContent = `Point Member dengan ID Member : ${member.id}, Atas Nama ${member.nama} adalah :`;
+        // document.getElementById('points-desc').textContent = `Point Member dengan ID Member : ${member.id}, Atas Nama ${member.nama} adalah :`;
 
         if (member.isPrint === "Ya") {
           document.getElementById("print-btn").style.display = "inline-block";
