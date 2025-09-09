@@ -194,9 +194,9 @@
       .then(res => res.json())
       .then(member => {
 
-        document.getElementById('member-id').textContent = `: ${member.id}`;
-        document.getElementById('member-nama').textContent = `: ${member.nama}`;
-        document.getElementById('member-produk').textContent = `: ${member.produkList}`;
+        document.getElementById('member-id').textContent = `${member.id}`;
+        document.getElementById('member-nama').textContent = `${member.nama}`;
+        document.getElementById('member-produk').textContent = `${member.produkList}`;
         document.getElementById('member-id-qr').textContent = member.id;
         document.getElementById('member-barcode').src = member.barcodeUrl || '';
         document.getElementById('member-point').textContent = member.point;
