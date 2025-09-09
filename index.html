@@ -90,6 +90,7 @@
             </div> -->
 
           <div class="bg-white rounded-2xl shadow-lg overflow-hidden" id="card-action" onclick="flip()">
+            
                 <div id="member-info" style="display:block;">
                     <div class="flex h-64">
                         <!-- Left section - Cream/Gray with decorative elements -->
@@ -127,14 +128,27 @@
                         </div>
                     </div>
                 </div>
-                <div id="qr-code-pv" class="justify-center" style="display:none;">
-                  <div class="flex justify-center">
-                    <img id="member-barcode" class="img-barcode" src="" />
-                  </div>
-                  <div class="flex justify-center mt-2">
-                    <p id="member-id-qr">-</p>
+
+
+                <div class="flex h-64">
+                  <div id="qr-code-pv" class="justify-center" style="display:none;">
+                    
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-UwFgl1pNhUTNZlWDFyqB2gCYHxKjiY.png" alt="Floral corner decoration" class="absolute mt-[-150px] ml-[-10px] object-contain rotate-180">
+                            
+                    <!-- Bottom left corner ornament -->
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-UwFgl1pNhUTNZlWDFyqB2gCYHxKjiY.png" alt="Floral corner decoration" class="absolute mb-[-150px] ml-[-10px] object-contain rotate-90" style="transform: scaleX(-1);">
+                            
+                    <div class="flex justify-center">
+                      <img id="member-barcode" class="img-barcode" src="" />
+                    </div>
+                    
+                    <div class="flex justify-center mt-2">
+                      <p id="member-id-qr">-</p>
+                    </div>
+                    
                   </div>
                 </div>
+            
             </div>
 
             <button id="print-btn" style="display:none;"
