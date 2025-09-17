@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kartu Member - Beauty Care</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'pink-soft': '#f8e8f0',
+            'pink-accent': '#f0c2d4',
+            'brown-text': '#8b4513',
+            'blue-button': '#6bb6ff'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-full bg-gradient-to-br from-pink-100 to-pink-200">
+  <div class="min-h-screen flex items-center justify-center p-4">
+    <div class="w-full md:w-4/12 max-w-6xl bg-pink-soft rounded-3xl shadow-2xl overflow-hidden">
+      <div class="flex flex-col lg:flex-row min-h-[600px]">
+
+        <!-- Right Side -->
+        <div class="lg:w-full p-8 lg:p-12 flex flex-col justify-center space-y-8">
+          <!-- Membership Card -->
+            <div class="space-y-4">
+                <h2 class="text-lg lg:text-xl font-semibold text-gray-600 uppercase tracking-wide">
+                Kartu Member
+                </h2>
+
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden" id="card-action" onclick="flip()">
+                
+                    <div id="member-info" style="display:block;">
+                        <div class="flex h-64">
+                            <!-- Left section - Cream/Gray with decorative elements -->
+                            <div class="w-2/5 bg-white relative flex flex-col items-center justify-center">
+                                <!-- Updated floral corner decoration with new image -->
+                                <!-- Top left corner ornament -->
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-UwFgl1pNhUTNZlWDFyqB2gCYHxKjiY.png" alt="Floral corner decoration" class="absolute mt-[-150px] ml-[-10px] object-contain rotate-180">
+                                
+                                <!-- Bottom left corner ornament -->
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-UwFgl1pNhUTNZlWDFyqB2gCYHxKjiY.png" alt="Floral corner decoration" class="absolute mb-[-150px] ml-[-10px] object-contain rotate-90" style="transform: scaleX(-1);">
+                                
+                                <!-- Logo with woman face and BEAUTIFY SOUL text -->
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Untitled%20design%20%2827%29-5yRsa9mSKxbCnooucB9HuodMzyY53U.png" alt="Beautify Soul Logo" class="w-5/6 h-3/6 object-contain ms-2">
+                            </div>
+                            
+                            <!-- Right section - Pink with card details -->
+                            <div class="w-3/5 bg-[#ffddd1] relative p-6 flex flex-col justify-center">
+                                <!-- Updated floral corner decoration with new image -->
+                                <!-- Top right corner ornament -->
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-UwFgl1pNhUTNZlWDFyqB2gCYHxKjiY.png" alt="Floral corner decoration" style="transform: scaleY(-1);" class="absolute mt-[-150px] ms-[50px] md:ms-[60px] object-contain w-3/5">
+                                
+                                <!-- Bottom right corner ornament -->
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-UwFgl1pNhUTNZlWDFyqB2gCYHxKjiY.png" alt="Floral corner decoration" class="absolute mb-[-150px] ms-[50px] md:ms-[60px] object-contain w-3/5">
+                                
+                                <!-- Card title -->
+                                <h3 class="text-md md:text-2xl font-bold text-gray-800 text-center">MEMBER CARD</h3>
+                                
+                                <!-- ID field -->
+                                <div class="space-y-2">
+                                    <div class="text-xs bg-gray-400 bg-opacity-50 rounded-full px-4 py-2 text-gray-800 font-medium text-center" id="member-id">
+                                    </div>
+                                </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div id="qr-code-pv" class="flex p-7 flex-col items-center justify-center w-full bg-[#ffddd1]" style="display:none;">
+
+                    <div class="p-5 rounded-[40px] bg-white">
+                        <div class="flex justify-center">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Untitled%20design%20%2827%29-5yRsa9mSKxbCnooucB9HuodMzyY53U.png" alt="Floral corner decoration" class="absolute w-[77px] -mt-2 ms-[-170px] md:ms-[-270px] object-contain">
+                            
+                        <img id="member-barcode" class="img-barcode" src="" />
+                        </div>
+                        
+                        <div class="flex justify-center mt-2">
+                        <p id="member-id-qr" class="text-center">Save the card and collect point every you buy product</p>
+                        </div>
+                    </div>
+                    
+                    </div>
+                
+                </div>
+
+                <a id="print-btn" style="display:none;" class="bg-blue-button hover:bg-blue-500 text-white font-medium py-0.5 px-5 rounded shadow-md transition-colors duration-200 w-full sm:w-auto">
+                Print
+                </a>
+            </div>
+
+            <!-- Points Section -->
+            <div class="space-y-4">
+                <h2 class="text-lg lg:text-xl font-semibold text-gray-600 uppercase tracking-wide">
+                Point Terkumpul
+                </h2>
+                <p class="text-gray-700 leading-relaxed" id="points-desc">
+                Loading data...
+                </p>
+
+                <div class="relative">
+                <div class="bg-white border-2 border-dashed border-blue-300 rounded-lg p-6 shadow-lg relative overflow-hidden">
+                    <div class="absolute -left-3 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-pink-soft rounded-full border-2 border-blue-300"></div>
+                    <div class="absolute -right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-pink-soft rounded-full border-2 border-blue-300"></div>
+                    <div class="text-center">
+                    <div class="text-xs uppercase tracking-widest text-blue-600 font-semibold mb-2">
+                        ★ LOYALTY POINTS ★
+                    </div>
+                    <div class="text-4xl lg:text-5xl font-bold text-blue-600 mb-2" id="member-point">
+                        0
+                    </div>
+                    <div class="text-sm text-gray-600 uppercase tracking-wide font-medium">
+                        Points Available
+                    </div>
+                    </div>
+                    <div class="absolute top-0 left-0 w-4 h-4 bg-pink-soft transform rotate-45 -translate-x-2 -translate-y-2"></div>
+                    <div class="absolute top-0 right-0 w-4 h-4 bg-pink-soft transform rotate-45 translate-x-2 -translate-y-2"></div>
+                    <div class="absolute bottom-0 left-0 w-4 h-4 bg-pink-soft transform rotate-45 -translate-x-2 translate-y-2"></div>
+                    <div class="absolute bottom-0 right-0 w-4 h-4 bg-pink-soft transform rotate-45 translate-x-2 translate-y-2"></div>
+                </div>
+                </div>
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    let front = true;
+    function flip() {
+      front = !front;
+      document.getElementById('member-info').style.display = front ? 'block' : 'none';
+      document.getElementById('qr-code-pv').style.display = front ? 'none' : 'block';
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    // console.log(params.get('id'))
+    const id = params.get("id");
+
+    if (!id) {
+      alert("Id Required");
+    }
+
+    // Fetch member data from Google Apps Script
+    const apiUrl = `https://script.google.com/macros/s/AKfycbx8r4UzQmYHVEno-Xez3XfKII0EfI4YGSrm4BdP6OqMvMIEMHUfhs0brADxGG_8XjH7/exec?id=${id}`;
+
+
+    fetch(apiUrl)
+      .then(res => res.json())
+      .then(member => {
+
+        document.getElementById('member-id').textContent = `${member.id}`;
+        document.getElementById('member-barcode').src = member.barcodeUrl || '';
+        document.getElementById('member-point').textContent = member.point;
+
+        if (member.isPrint === "Ya") {
+          document.getElementById("print-btn").style.display = "inline-block";
+          const a = document.getElementById('print-btn'); //or grab it by tagname etc
+          a.href = "https://agusman17.github.io/skincare-membercard/print.html?id="+member.id;
+        }
+        document.getElementById('points-desc').style.display = 'none';
+      })
+      .catch(err => {
+        console.error("Error fetching data:", err);
+        document.getElementById('points-desc').textContent = "Gagal memuat data member.";
+      });
+  </script>
+</body>
+</html>
